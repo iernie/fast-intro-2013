@@ -1,8 +1,5 @@
-var WIDTH = window.innerWidth,
-	HEIGHT = window.innerHeight;
-
 var VIEW_ANGLE = 45,
-	ASPECT = WIDTH / HEIGHT,
+	ASPECT = screen.width / screen.height,
 	NEAR = 0.1,
 	FAR = 10000;
 
@@ -40,10 +37,22 @@ materials = {
 	}),
 }
 
-init();
-animate();
+$('#start').on('click', function () {
+	$(this).hide();
+	init();
+	animate();
+});
+	
+$(window).on('resize', function () {
+	camera.aspect = screen.width / screen.height;
+	camera.updateProjectionMatrix();
+	renderer.setSize( screen.width, screen.height );
+});
 
 function init() {
+
+	browser.requestFullscreen();
+	
 	clock = new THREE.Clock();
 
 	//
@@ -63,7 +72,7 @@ function init() {
 	screamingGoat.load();
 
 	renderer = new THREE.WebGLRenderer();
-	renderer.setSize(WIDTH, HEIGHT);
+	renderer.setSize(screen.width, screen.height);
 
 	document.body.appendChild(renderer.domElement);
 

@@ -1,0 +1,16 @@
+var goat = [
+	"       xxxx            ",
+	"     xxxx              ", 
+	"    xxx                ", 
+	"  xx|xxxx              ", 
+	" xxxxxxxxx          xx ", 
+	" xxxxxxxxxx        xx  ", 
+	"  xx  xxxxxxxxxxxxxxx  ", 
+	"   x   xxxxxxxxxxxxxx  ", 
+	"        xxxxxxxxxxxxx  ", 
+	"         xxxxxxxxxxxx  ", 
+	"         xx        xx  ", 
+	"         xx        xx  ", 
+	"         xx        xx  ",
+	"         xx        xx  ",
+];

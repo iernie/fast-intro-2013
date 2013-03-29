@@ -20,7 +20,7 @@ var map = [
 	" bbbbbbbbbbbbbbbbbbb ",
 ]
 
-
+initSound();
 
 materials = {
 	'x': new THREE.MeshLambertMaterial({color: 0x632c1c}),
@@ -38,7 +38,6 @@ materials = {
 }
 
 $('#start').on('click', function () {
-	$(this).hide();
 	init();
 	animate();
 });
@@ -49,27 +48,36 @@ $(window).on('resize', function () {
 	renderer.setSize( screen.width, screen.height );
 });
 
+function initSound() {
+	
+
+	wubWubSong = document.createElement('audio');
+	wubWubSong.setAttribute('src', 'wubwub.ogg');
+	wubWubSong.addEventListener("loadeddata", function() {
+		$('#start').show();
+		$('#loading').hide();
+	}, true);
+
+	screamingGoat = document.createElement('audio');
+	screamingGoat.setAttribute('src', 'screaming_goat.ogg');
+	screamingGoat.load();
+	screamingGoat.addEventListener("loadeddata", function() {
+		wubWubSong.load();
+	}, true);
+
+	introSong = document.createElement('audio');
+	introSong.setAttribute('src', 'intro.ogg');
+	introSong.load();
+	introSong.addEventListener("loadeddata", function() {
+		screamingGoat.load();
+	}, true);
+}
+
 function init() {
 
 	browser.requestFullscreen();
 	
 	clock = new THREE.Clock();
-
-	//
-	// Sound
-	//
-
-	introSong = document.createElement('audio');
-	introSong.setAttribute('src', 'intro.wav');
-	introSong.load();
-
-	wubWubSong = document.createElement('audio');
-	wubWubSong.setAttribute('src', 'wubwub.wav');
-	wubWubSong.load();
-
-	screamingGoat = document.createElement('audio');
-	screamingGoat.setAttribute('src', 'screaming_goat.ogg');
-	screamingGoat.load();
 
 	renderer = new THREE.WebGLRenderer();
 	renderer.setSize(screen.width, screen.height);

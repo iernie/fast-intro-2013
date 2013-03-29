@@ -11,6 +11,23 @@ var clock;
 var camera, scene, renderer;
 var sphereMaterial, sphere, pointLight;
 
+var goat = [
+	"       xxxx            ",
+	"     xxxx              ", 
+	"    xxx                ", 
+	"  xxxxxxx              ", 
+	" xxxxxxxxx          xx ", 
+	" xxxxxxxxxx        xx  ", 
+	"  xx  xxxxxxxxxxxxxxx  ", 
+	"   x   xxxxxxxxxxxxxx  ", 
+	"        xxxxxxxxxxxxx  ", 
+	"         xxxxxxxxxxxx  ", 
+	"         xx        xx  ", 
+	"         xx        xx  ", 
+	"         xx        xx  ",
+	"         xx        xx  ",
+];
+
 init();
 animate();
 
@@ -26,24 +43,40 @@ function init() {
 		VIEW_ANGLE, ASPECT, NEAR, FAR );
 
 	scene = new THREE.Scene();
-	camera.position.z = 300;
+	camera.position.z = 50;
 	scene.add(camera);
 
-	sphereMaterial = new THREE.MeshLambertMaterial({
-		color: 0xff1100
+	material = new THREE.MeshLambertMaterial({
+		color: 0xcccccc
 	});
 
-	sphere = new THREE.Mesh(
-		new THREE.SphereGeometry(
-			50, 16, 16),
-		sphereMaterial);
+	wireframeMaterial = new THREE.MeshLambertMaterial({
+		color: 0x000000,
+		wireframe: true
+	});
 
-	scene.add(sphere);
+	var counter = 0;
+
+	for (var y = 0; y < goat.length; y++) {
+		for (var x = 0; x < goat[y].length; x++) {
+			if (goat[y][x] == 'x') {
+				var geometry = new THREE.CubeGeometry(1, 1, 1);
+				var mesh = new THREE.Mesh(geometry, material);
+				mesh.targetPosition = new THREE.Vector3(x, -y, 0);
+				mesh.timeout = counter++ * 0.05 + Math.random() * 0.2;
+				mesh.position.x = x;
+				mesh.position.y = 100;
+				scene.add(mesh);
+			}
+		}
+	}
 
 	pointLight = new THREE.PointLight( 0xFFFFFF );
 	pointLight.position.x = 10;
 	pointLight.position.y = 50;
 	pointLight.position.z = 130;
+
+	scene.add(sky.buildMesh());
 
 	scene.add(pointLight);
 	clock.start();
@@ -51,14 +84,29 @@ function init() {
 
 function animate() {
 
-	//console.log(clock.getElapsedTime());
-
 	requestAnimationFrame(animate);
 
-	sphere.rotation.x += 0.01;
-	sphere.rotation.y += 0.02;
-	sphere.position.x = 100*Math.sin(clock.getElapsedTime());
-	sphere.position.y = 50*Math.sin(clock.getElapsedTime());
+	for (var i = 0; i < scene.children.length; i++) {
+		var child = scene.children[i];
+
+		if (child.timeout !== undefined && child.timeout > clock.getElapsedTime()) {
+			continue;
+		}
+
+		if (child.targetPosition) {
+			if (child.targetPosition.y < child.position.y) {
+				child.position.y -= 0.3;
+			}
+			else {
+				child.position = child.targetPosition;
+				child.targetPosition = null;
+			}
+		}
+	}
+
+	camera.position.y = 20*Math.sin(clock.getElapsedTime());
+	camera.position.x = 50*Math.cos(clock.getElapsedTime());
+	camera.lookAt(new THREE.Vector3(0, 0, 0));
 
 	renderer.render(scene, camera);
 }

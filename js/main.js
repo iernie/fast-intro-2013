@@ -185,7 +185,7 @@ function animate() {
 		camera.position.z = 50*Math.sin(time);
 		camera.lookAt(new THREE.Vector3(Math.sin(time)*10, 0, 0));
 	}
-	else if ( time < 28 ) {
+	else if ( time < 29 ) {
 		camera.position.y = 20*Math.sin(time)+20;
 		camera.position.x = 50*Math.cos(time)-100;
 		camera.position.z = 50*Math.sin(time);
@@ -213,28 +213,29 @@ function animate() {
 		$('#countdown1').hide();
 		$('#fight').show();
 	}
-	else if ( time < 38 ) {
+	else if ( time < 37 ) {
 		$('#fight').hide();
 	}
-	else if ( time < 43 ) {
+	else if ( time < 40 ) {
 		for (var i = 0; i < geishaObj.length; i++) {
 			geishaObj[i].position.x += 0.3;
 		}
 	} else if (time < 44) {
 		screamingGoat.play();
 	}
-	else if ( time < 60 ) {
+	else if ( time < 120 ) {
 		wubWubSong.play();
 		for (var i = 0; i < geishaObj.length; i++) {
 			var obj = geishaObj[i];
 			var len = obj.position.distanceTo(goatPosition);
 
-			if ( !obj.vec && len < time-60) {
-				obj.vec = new THREE.Vector3(Math.random(), Math.random(), Math.random());
+			if ( !obj.vec && len < time*2-40) {
+				obj.vec = new THREE.Vector3(-Math.random()-0.5, Math.random()-0.5, Math.random());
 			}
 			if ( obj.vec ) {
 				obj.position.add(obj.vec);
 			}
+			geishaObj[i].position.x += 0.3;
 		}
 	}
 

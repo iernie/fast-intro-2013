@@ -229,7 +229,7 @@ function animate() {
 			var obj = geishaObj[i];
 			var len = obj.position.distanceTo(goatPosition);
 
-			if ( !obj.vec && len < time*2-40) {
+			if ( !obj.vec && len < time*1.5-30) {
 				obj.vec = new THREE.Vector3(-Math.random()-0.5, Math.random()-0.5, Math.random());
 			}
 			if ( obj.vec ) {
@@ -239,11 +239,25 @@ function animate() {
 		}
 	}
 
+	if ( time > 40 && time < 42 ) {
+		camera.position.y = 5;
+		camera.position.x = -10;
+		camera.position.z = 20;
+		camera.lookAt(new THREE.Vector3(5, -5, 0));
+	}
+
+	if ( time > 42 && time < 44 ) {
+		camera.position.y = 5;
+		camera.position.x = -5;
+		camera.position.z = 15;
+		camera.lookAt(new THREE.Vector3(5, -5, 0));
+	}
+
 	if ( time > 44 ) {
-		camera.position.y = 20*Math.sin(time)+10;
+		camera.position.y = 20*Math.sin(time+Math.PI/4)+10;
 		camera.position.x = 50*Math.cos(time)+20;
 		camera.position.z = 50*Math.sin(time);
-		camera.lookAt(new THREE.Vector3(Math.sin(time)*10-20, -20, 0));
+		camera.lookAt(new THREE.Vector3(Math.sin(time)*10-40, -20, 0));
 	}
 
 	if ( time > 60 ) {

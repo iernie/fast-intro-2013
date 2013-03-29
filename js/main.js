@@ -180,8 +180,8 @@ function animate() {
 	var goatPosition = new THREE.Vector3(0, 0, 0);
 
 	if ( time < 11 ) {
-		camera.position.y = 20*Math.sin(time);
-		camera.position.x = 50*Math.cos(time);
+		camera.position.y = 20*Math.sin(time)+40;
+		camera.position.x = 50*Math.cos(time)+40;
 		camera.position.z = 50*Math.sin(time);
 		camera.lookAt(new THREE.Vector3(Math.sin(time)*10, 0, 0));
 	}
@@ -237,6 +237,17 @@ function animate() {
 			}
 			geishaObj[i].position.x += 0.3;
 		}
+	}
+
+	if ( time > 44 ) {
+		camera.position.y = 20*Math.sin(time)+10;
+		camera.position.x = 50*Math.cos(time)+20;
+		camera.position.z = 50*Math.sin(time);
+		camera.lookAt(new THREE.Vector3(Math.sin(time)*10-20, -20, 0));
+	}
+
+	if ( time > 60 ) {
+		$('#roguebyte').show();
 	}
 
 	renderer.render(scene, camera);

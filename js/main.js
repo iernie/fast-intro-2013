@@ -38,6 +38,7 @@ materials = {
 }
 
 $('#start').on('click', function () {
+	$(this).hide();
 	init();
 	animate();
 });

@@ -11,6 +11,8 @@ var clock;
 var camera, scene, renderer;
 var pointLight, geishaObj;
 
+var introSong, wubWubSong, screamingGoat;
+
 var map = [
 	"         bbb         ",
 	"                     ",
@@ -43,6 +45,22 @@ animate();
 
 function init() {
 	clock = new THREE.Clock();
+
+	//
+	// Sound
+	//
+
+	introSong = document.createElement('audio');
+	introSong.setAttribute('src', 'intro.wav');
+	introSong.load();
+
+	wubWubSong = document.createElement('audio');
+	wubWubSong.setAttribute('src', 'wubwub.wav');
+	wubWubSong.load();
+
+	screamingGoat = document.createElement('audio');
+	screamingGoat.setAttribute('src', 'screaming_goat.ogg');
+	screamingGoat.load();
 
 	renderer = new THREE.WebGLRenderer();
 	renderer.setSize(WIDTH, HEIGHT);
@@ -132,12 +150,14 @@ function init() {
 	scene.add(sky.buildMesh());
 
 	clock.start();
+	introSong.play();
 }
 
 function animate() {
 
 	requestAnimationFrame(animate);
 	var time = clock.getElapsedTime();
+	console.log(time);
 
 	for (var i = 0; i < scene.children.length; i++) {
 		var child = scene.children[i];
@@ -200,8 +220,11 @@ function animate() {
 		for (var i = 0; i < geishaObj.length; i++) {
 			geishaObj[i].position.x += 0.3;
 		}
+	} else if (time < 44) {
+		screamingGoat.play();
 	}
 	else if ( time < 60 ) {
+		wubWubSong.play();
 		for (var i = 0; i < geishaObj.length; i++) {
 			var obj = geishaObj[i];
 			var len = obj.position.distanceTo(goatPosition);

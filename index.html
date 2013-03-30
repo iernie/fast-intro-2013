@@ -7,6 +7,14 @@
 				margin: 0;
 				padding: 0;
 			}
+			body {
+				background: #000;
+				font-family: "Verdana";
+			}
+			img {
+				display: block;
+				margin: 10% auto 0 auto;
+			}
 			#text {
 				text-align: center;
 				position: fixed;
@@ -15,28 +23,28 @@
 			}
 			#text h1 {
 				display: none;
-				color: #fff;
-				font-family: "Verdana";
+				color: #fff;	
 				font-size: 160px;
 				margin-top: -80px;
 			}
 			#text h2 {
 				display: none;
+				height: 50px;
 				color: #fff;
-				font-family: "Verdana";
-				font-size: 60px;
-				margin-top: -40px;
+				font-size: 40px;
+				margin-top: 100px;
 			}
-			a {
+			#text h2 a {
 				text-decoration: none;
+				color: #fff;
 			}
 		</style>
 	</head>
 
 	<body>
-
+		<img id="logo" src="roguebyte.png">
 		<div id="text">
-			<h2 id="loading" style="display: block; color: black;">Loading...</h2>
+			<h2 id="loading" style="display: block;">Looking for the missing byte...</h2>
 			<h2 id="start"><a href="#">Start</a></h2>
 			<h1 id="countdown3">3</h1>
 			<h1 id="countdown2">2</h1>
@@ -51,6 +59,7 @@
 		<script src="js/three.min.js"></script>
 		<script src="js/sky.js"></script>
 		<script src="js/browser.js"></script>
+		<script src="js/modernizr.js"></script>
 		<script src="js/main.js"></script>
 	</body>
 </html>

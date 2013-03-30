@@ -20,7 +20,24 @@ var map = [
 	" bbbbbbbbbbbbbbbbbbb ",
 ]
 
-initSound();
+$(document).ready(function() {
+	var unsupported;
+
+	if (!Modernizr.webgl) {
+		unsupported = 'Your browser or hardware does not support WebGL.';
+	} else if (!Modernizr.audio.ogg) {
+		unsupported = 'Your browser does not support HTML5 Audio ogg playback.'
+	} else if (!Modernizr.fullscreen) {
+		unsupported = 'Your browser does not support the fullscreen API.';
+	}
+
+	if (unsupported) {
+		$('#loading').html(unsupported + '<br>Try Chrome on a desktop!')
+	} else {
+		initSound();
+	}
+	
+});
 
 materials = {
 	'x': new THREE.MeshLambertMaterial({color: 0x632c1c}),
@@ -53,8 +70,8 @@ function initSound() {
 	wubWubSong = document.createElement('audio');
 	wubWubSong.setAttribute('src', 'wubwub.ogg');
 	wubWubSong.addEventListener("loadeddata", function() {
-		$('#start').show();
 		$('#loading').hide();
+		$('#start').show();
 	}, true);
 
 	screamingGoat = document.createElement('audio');
@@ -166,6 +183,7 @@ function init() {
 	scene.add(sky.buildMesh());
 
 	clock.start();
+	$("#logo").hide();
 	introSong.play();
 }
 

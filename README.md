@@ -1,14 +1,11 @@
 goatstep
 ========
 
-by roguebyte (haeric & ernie)
+by roguebyte (also known as [haeric](https://github.com/haeric) & [ernie](https://github.com/iernie))
 
-The story about a fight between a cyborg geisha and cyborg goat.
+Fast intro competition entry at The Gathering 2013. Made in ~4 hours. A story about a fight between a cyborg geisha and cyborg goat. 
+(Cyborgs, geishas and goats was the given theme for the given competition. Don't ask, it's Fast Intro!)
 
-Fast intro competition entry at The Gathering 2013. Made in ~4 hours.
+View it here: http://iernie.github.com/fast-intro-2013/
 
-Can be viewed here: http://iernie.github.com/fast-intro-2013/
-
-Run in fullscreen in Chrome (not Chromium!).
-
-Uses three.js
+Probably works best in Chrome (not Chromium!). Made with [three.js](https://github.com/mrdoob/three.js/).

@@ -54,7 +54,8 @@ materials = {
 	}),
 }
 
-$('#start').on('click', function () {
+$('#start').on('click', function (e) {
+	e.preventDefault();
 	$(this).hide();
 	init();
 	animate();
@@ -83,10 +84,11 @@ function initSound() {
 
 	introSong = document.createElement('audio');
 	introSong.setAttribute('src', 'intro.ogg');
-	introSong.load();
 	introSong.addEventListener("loadeddata", function() {
 		screamingGoat.load();
 	}, true);
+
+	introSong.load();
 }
 
 function init() {

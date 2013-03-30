@@ -50,8 +50,6 @@ $(window).on('resize', function () {
 });
 
 function initSound() {
-	
-
 	wubWubSong = document.createElement('audio');
 	wubWubSong.setAttribute('src', 'wubwub.ogg');
 	wubWubSong.addEventListener("loadeddata", function() {

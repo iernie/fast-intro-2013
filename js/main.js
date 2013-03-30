@@ -301,7 +301,7 @@ function animate() {
 		$('#roguebyte').show();
 	}
 
-	if ( time < 120 ) {
+	if ( time < 145 ) {
 		renderer.render(scene, camera);
 	}
 }

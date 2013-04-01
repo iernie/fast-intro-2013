@@ -23,12 +23,10 @@ var map = [
 $(document).ready(function() {
 	var unsupported;
 
-	if (!Modernizr.webgl) {
+	if (!Modernizr.webgl || !Modernizr.fullscreen) {
 		unsupported = 'Your browser or hardware does not support WebGL.';
 	} else if (!Modernizr.audio.ogg) {
 		unsupported = 'Your browser does not support HTML5 Audio ogg playback.'
-	} else if (!Modernizr.fullscreen) {
-		unsupported = 'Your browser does not support the fullscreen API.';
 	}
 
 	if (unsupported) {
